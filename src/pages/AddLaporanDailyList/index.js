@@ -26,6 +26,7 @@ export default function ({ navigation, route }) {
     const isFocused = useIsFocused();
     const kode = route.params.kode;
     const item = route.params;
+    const [catatan, setCatatan] = useState(route.params.catatan);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
         if (isFocused) {
@@ -37,7 +38,8 @@ export default function ({ navigation, route }) {
         setLoading(true);
         setTimeout(() => {
             axios.post(urlAPI + 'v1_add_catatan.php', {
-                kode: route.params.kode
+                kode: route.params.kode,
+                catatan: catatan
             }).then(res => {
                 setLoading(false);
                 if (res.data.status == 200) {
@@ -174,7 +176,9 @@ export default function ({ navigation, route }) {
                     form: 8
                 })} />
                 <MyGap jarak={5} />
-                <MyInput label="Catatan" icon={false} multiline />
+                <MyInput label="Catatan" value={catatan} onChangeText={x => {
+                    setCatatan(x)
+                }} icon={false} multiline />
                 <MyGap jarak={10} />
 
                 {!loading && <MyButton onPress={SaveCatatan} warna={colors.primary} title="Simpan Selesai" Icons="checkmark-circle-outline" />}

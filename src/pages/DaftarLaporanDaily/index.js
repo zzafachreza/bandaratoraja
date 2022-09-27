@@ -184,14 +184,9 @@ export default function ({ navigation, route }) {
                     fontSize: windowWidth / 20,
                     color: colors.white,
                     marginBottom: 5,
-                }}>DAFTAR LAPORAN
+                }}>Arsip Ceklis Harian F1
                 </Text>
-                <Text style={{
-                    fontFamily: fonts.secondary[400],
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
-                    marginBottom: 10,
-                }}>Daily Activity GE - ACI -MMJ Road Matenance  </Text>
+
             </View>
 
             <FlatList

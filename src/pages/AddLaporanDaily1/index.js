@@ -2205,13 +2205,811 @@ export default function ({ navigation, route }) {
 
                 {kirim.form == 7 && (
                     <View>
-                        <Text>FOrm7</Text>
+
+                        {/* selanghidrolik */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={1} soal="Selang Hidrolik" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selanghidrolik: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selanghidrolik == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selanghidrolik: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selanghidrolik == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+                        {/* selangrubberbelakang */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={2} soal="Selang Rubber" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selangrubberbelakang: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selangrubberbelakang == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selangrubberbelakang: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selangrubberbelakang == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>5 Roll</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* terpal */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={3} soal="Terpal" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            terpal: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.terpal == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            terpal: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.terpal == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* pelampung_filter */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={4} soal="Pelampung / Filter" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            pelampung_filter: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.pelampung_filter == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            pelampung_filter: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.pelampung_filter == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* wheelchock */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={5} soal="Wheel Chock" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            wheelchock: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.wheelchock == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            wheelchock: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.wheelchock == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* bajutahanapibelakang */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={6} soal="Baju Tahan Apir" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            bajutahanapibelakang: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.bajutahanapibelakang == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            bajutahanapibelakang: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.bajutahanapibelakang == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* fireblanket */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={7} soal="Fire Blanket" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            fireblanket: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.fireblanket == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            fireblanket: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.fireblanket == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>4 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* cuttinghidrolik */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={8} soal="Cutting Hidrolik" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            cuttinghidrolik: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.cuttinghidrolik == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            cuttinghidrolik: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.cuttinghidrolik == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* tandulipat */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={9} soal="Tandu Lipat" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            tandulipat: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.tandulipat == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            tandulipat: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.tandulipat == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Set</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* compressorbaz */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={10} soal="Compressor BAZ" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            compressorbaz: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.compressorbaz == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            compressorbaz: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.compressorbaz == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* mesinhidrolik */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={11} soal="Mesin Hidrolik" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            mesinhidrolik: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.mesinhidrolik == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            mesinhidrolik: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.mesinhidrolik == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
                     </View>
                 )}
 
                 {kirim.form == 8 && (
                     <View>
-                        <Text>FOrm8</Text>
+                        {/* linggisatas */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={1} soal="Linggis" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            linggisatas: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.linggisatas == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            linggisatas: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.linggisatas == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
+                        {/* hook */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={2} soal="Hook" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            hook: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.hook == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            hook: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.hook == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>1 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* tangga */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={3} soal="Tangga" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            tangga: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.tangga == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            tangga: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.tangga == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                        {/* selangsupply */}
+                        <View style={{
+                            paddingVertical: 10,
+                        }}>
+                            <MySoal nomor={4} soal="Selang Supply" />
+                            <View>
+
+                                <View style={{
+                                    flexDirection: 'row',
+                                    justifyContent: 'space-around'
+                                }}>
+
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selangsupply: 'Baik'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selangsupply == 'Baik' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Baik</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity onPress={() => {
+                                        setKirim({
+                                            ...kirim,
+                                            selangsupply: 'Rusak'
+                                        })
+                                    }} style={styles.box}>
+                                        <Icon type='ionicon' name={kirim.selangsupply == 'Rusak' ? 'checkmark-circle' : 'checkmark-circle-outline'} color={colors.primary} />
+                                        <Text style={styles.p1}>Rusak</Text>
+                                    </TouchableOpacity>
+                                    <View style={{
+                                        flex: 0.7,
+                                        paddingLeft: 5,
+                                        flexDirection: 'row',
+                                        paddingVertical: 5,
+                                        marginVertical: 5,
+                                        backgroundColor: colors.black,
+
+                                        borderWidth: 1,
+                                        borderColor: colors.black,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderRadius: 10,
+                                    }}>
+
+                                        <Text style={{
+                                            color: colors.white,
+                                            fontFamily: fonts.secondary[600]
+                                        }}>2 Buah</Text>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+
                     </View>
                 )}
 

@@ -21,40 +21,41 @@ import { Icon } from 'react-native-elements';
 import axios from 'axios';
 import { MyButton, MyGap, MyInput } from '../../components';
 import { useIsFocused } from '@react-navigation/native';
+
 export default function ({ navigation, route }) {
     const isFocused = useIsFocused();
     const kode = route.params.kode;
-
+    const item = route.params;
+    const [catatan, setCatatan] = useState(route.params.catatan);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         if (isFocused) {
 
         }
     }, [isFocused])
 
-    const MyList = ({ image, label, onPress }) => {
-        return (
-            <TouchableOpacity onPress={onPress} style={{
-                flex: 1,
-                borderRadius: 10,
-                backgroundColor: colors.primary,
-                padding: 10,
-                marginHorizontal: 5,
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <Image source={image} style={{
-                    height: 35,
-                    resizeMode: 'contain',
-                    marginBottom: 5,
-                }} />
-                <Text style={{
-                    fontFamily: fonts.secondary[600],
-                    color: colors.white,
-                    fontSize: 12
-                }}>{label}</Text>
-            </TouchableOpacity>
-        )
+    const SaveCatatan = () => {
+        setLoading(true);
+        setTimeout(() => {
+            axios.post(urlAPI + 'v1_add_catatan.php', {
+                kode: route.params.kode,
+                catatan: catatan
+            }).then(res => {
+                setLoading(false);
+                if (res.data.status == 200) {
+                    Alert.alert('ARFF TORAJA AIRPORT', res.data.messege);
+                    navigation.goBack();
+                } else {
+                    console.warn(res.data.messege);
+                }
+                console.log(res.data);
+            })
+        }, 1200)
     }
+
+
+
+
 
 
 
@@ -65,38 +66,114 @@ export default function ({ navigation, route }) {
             flex: 1,
             padding: 10,
         }}>
-            <ScrollView style={{}} showsVerticalScrollIndicator={false}>
-                <View style={{
-                    flexDirection: 'row',
-                    marginVertical: 5,
-                }}>
-                    <MyList onPress={() => navigation.navigate('AddLaporan1', {
-                        kode: kode
-                    })} label="Analisa Pekerjaan" image={require('../../assets/analisa.png')} />
-                    <MyList onPress={() => navigation.navigate('AddLaporan2', {
-                        kode: kode
-                    })} label="Aktifitas Unit" image={require('../../assets/aktifitas.png')} />
-                </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
 
                 <View style={{
-                    flexDirection: 'row',
+                    margin: 10,
+                    padding: 10,
+                    backgroundColor: colors.white,
+                    borderRadius: 10,
                     marginVertical: 5,
+                    flexDirection: 'row'
+
                 }}>
-                    <MyList onPress={() => navigation.navigate('AddLaporan3', {
-                        kode: kode
-                    })} label="Kondisi Cuaca" image={require('../../assets/cuaca.png')} />
-                    <MyList onPress={() => navigation.navigate('AddLaporan4', {
-                        kode: kode
-                    })} label="Rock Layering" image={require('../../assets/layer.png')} />
+                    <View style={{
+                        flex: 1,
+                    }}>
+                        <Text style={{
+                            fontFamily: fonts.secondary[600],
+                            fontSize: 12,
+                            color: colors.primary,
+                        }}>{item.hari}, {item.tanggal} {item.jam.substring(0, 5)}</Text>
+                        <View style={{
+                            flexDirection: 'row',
+                            marginVertical: 3,
+                        }}>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 12,
+                                flex: 0.4,
+                            }}>Kendaraan</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 12,
+                                flex: 0.1,
+                            }}>:</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 12,
+                                flex: 1,
+                            }}>{item.kendaraan} / FOAM TENDER</Text>
+                        </View>
+                        <View style={{
+                            flexDirection: 'row',
+                            marginVertical: 3,
+                        }}>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 12,
+                                flex: 0.4,
+                            }}>Pembuat</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[600],
+                                fontSize: 12,
+                                flex: 0.1,
+                            }}>:</Text>
+                            <Text style={{
+                                fontFamily: fonts.secondary[400],
+                                fontSize: 12,
+                                flex: 1,
+                            }}>{item.username} / {item.nama_lengkap}</Text>
+                        </View>
+                    </View>
                 </View>
-                <View style={{
-                    flexDirection: 'row',
-                    marginVertical: 5,
-                }}>
-                    <MyList onPress={() => navigation.navigate('AddLaporan5', {
-                        kode: kode
-                    })} label="Photo Activity" image={require('../../assets/foto.png')} />
-                </View>
+
+                <MyButton warna={colors.primary} title="Jumlah Bahan Kimia" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Jumlah Bahan Kimia',
+                    form: 9
+                })} />
+                <MyGap jarak={5} />
+                <MyButton warna={colors.primary} title="Ruangan Cabin Pengemudi" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Ruangan Cabin Pengemudi',
+                    form: 10
+                })} />
+                <MyGap jarak={5} />
+                <MyButton warna={colors.primary} title="Ruangan Cabin Kanan" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Ruangan Cabin Kanan',
+                    form: 11
+                })} />
+                <MyGap jarak={5} />
+                <MyButton warna={colors.primary} title="Ruangan Cabin Kiri" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Ruangan Cabin Kiri',
+                    form: 12
+                })} />
+                <MyGap jarak={5} />
+                <MyButton warna={colors.primary} title="Ruangan Cabin Belakang" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Ruangan Cabin Belakang',
+                    form: 13
+                })} />
+                <MyGap jarak={5} />
+                <MyButton warna={colors.primary} title="Ruangan Cabin Atas" onPress={() => navigation.navigate('AddLaporan1', {
+                    kode: item.kode,
+                    menu: 'Ruangan Cabin Atas',
+                    form: 14
+                })} />
+
+                <MyGap jarak={5} />
+                <MyInput label="Catatan" value={catatan} onChangeText={x => {
+                    setCatatan(x)
+                }} icon={false} multiline />
+                <MyGap jarak={10} />
+
+                {!loading && <MyButton onPress={SaveCatatan} warna={colors.primary} title="Simpan Selesai" Icons="checkmark-circle-outline" />}
+
+                {loading && <ActivityIndicator color={colors.primary} size="large" />}
+
 
 
             </ScrollView>

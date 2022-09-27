@@ -19,10 +19,10 @@ import { fonts, windowWidth } from '../../utils/fonts';
 import { storeData, getData, urlAPI } from '../../utils/localStorage';
 import { Icon } from 'react-native-elements';
 import axios from 'axios';
-import { MyButton, MyGap, MyInput } from '../../components';
+import { MyButton, MyGap, MyInput, MyPicker } from '../../components';
 import { showMessage } from 'react-native-flash-message';
 import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker';
-
+import { maskJs, maskCurrency } from 'mask-js';
 
 export default function ({ navigation }) {
 
@@ -63,7 +63,10 @@ export default function ({ navigation }) {
         var dateTime = year + '-' + month + '-' + day;
         return dateTime;
     }
-    const [kirim, setKirim] = useState({});
+    const [kirim, setKirim] = useState({
+        kendaraan: 'HINO',
+        hari: 'Senin'
+    });
 
     const sendServer = () => {
         setLoading(true);
@@ -71,10 +74,12 @@ export default function ({ navigation }) {
         setTimeout(() => {
 
             const send = {
-                tipe: 'NORMAL',
+                tipe: 'F2',
                 tanggal: selectedDate,
                 fid_user: user.id,
-                area: kirim.area
+                kendaraan: 'HINO',
+                jam: kirim.jam,
+                hari: kirim.hari
             }
 
 
@@ -84,7 +89,7 @@ export default function ({ navigation }) {
                 // console.log(res.data)
 
                 if (res.data.status == 200) {
-                    Alert.alert('Musi Mitra Jaya', res.data.messege);
+                    Alert.alert('ARFF TORAJA AIRPORT', res.data.messege);
                     navigation.replace('AddLaporanList', {
                         kode: res.data.kode
                     })
@@ -112,20 +117,68 @@ export default function ({ navigation }) {
             }}>
                 <Text style={{
                     fontFamily: fonts.secondary[600],
-                    fontSize: windowWidth / 20,
-                    color: colors.white,
-                    marginBottom: 5,
-                }}>TAMBAH LAPORAN</Text>
-                <Text style={{
-                    fontFamily: fonts.secondary[400],
                     fontSize: windowWidth / 25,
                     color: colors.white,
+                    textAlign: 'center',
+                    marginBottom: 5,
+                }}>Checklist Harian Mobil Foam Tender 2 (F2)</Text>
+                <Text style={{
+                    fontFamily: fonts.secondary[400],
+                    fontSize: windowWidth / 23,
+                    color: colors.white,
+                    textAlign: 'center',
                     marginBottom: 10,
-                }}>Activity GE - ACI -MMJ Rock Layering  </Text>
+                }}>LOG BOOK KENDARAAN FOAM TENDER</Text>
             </View>
             <ScrollView style={{
-                padding: 10,
+                paddingHorizontal: 10,
             }} showsVerticalScrollIndicator={false}>
+                <MyInput icon={false} value='HINO' label="Nama Kendaraan" />
+                <MyGap jarak={5} />
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <View style={{
+                        flex: 1,
+                        paddingRight: 5,
+                    }}>
+                        <MyInput placeholder="00:00" maxLength={5} keyboardType="number-pad" icon={false} value={kirim.jam} onChangeText={(x) => {
+                            setKirim({
+                                ...kirim,
+                                jam: maskJs('99:99', x)
+                            })
+                        }} label="Waktu" />
+                    </View>
+                    <View style={{
+                        flex: 1,
+                        paddingLeft: 5,
+                    }}>
+                        <MyPicker label="Hari" onValueChange={x => setKirim({
+                            ...kirim,
+                            hari: x
+                        })} data={[
+                            {
+                                value: 'Senin',
+                                label: 'Senin'
+                            },
+                            {
+                                value: 'Selasa',
+                                label: 'Selasa'
+                            }, {
+                                value: 'Rabu',
+                                label: 'Rabu'
+                            },
+                            {
+                                value: 'Kamis',
+                                label: 'Kamis'
+                            },
+                            {
+                                value: 'Jumat',
+                                label: 'Jumat'
+                            }
+                        ]} />
+                    </View>
+                </View>
 
                 <DatePicker
                     mode="calendar"
@@ -148,11 +201,9 @@ export default function ({ navigation }) {
                         // console.log(date)
                     }}
                 />
-                <MyInput icon={false} label="Work Area" onChangeText={x => setKirim({
-                    ...kirim,
-                    area: x
-                })} />
-                <MyGap jarak={20} />
+
+
+
 
 
 

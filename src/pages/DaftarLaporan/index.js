@@ -19,6 +19,8 @@ import { windowWidth, fonts } from '../../utils/fonts';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
 import { Icon } from 'react-native-elements';
+import { useIsFocused } from '@react-navigation/native';
+
 const wait = timeout => {
     return new Promise(resolve => {
         setTimeout(resolve, timeout);
@@ -28,19 +30,23 @@ export default function ({ navigation, route }) {
     const [refreshing, setRefreshing] = React.useState(false);
     const [data, setData] = useState([]);
     const [user, setUser] = useState({});
-
+    const isFocused = useIsFocused();
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
         getTransaction();
         wait(2000).then(() => setRefreshing(false));
     }, []);
 
+
     useEffect(() => {
+        if (isFocused) {
+
+            getTransaction();
+        }
+    }, [isFocused])
 
 
-        getTransaction();
 
-    }, []);
 
 
 
@@ -54,7 +60,7 @@ export default function ({ navigation, route }) {
             axios
                 .post(urlAPI + 'v1_data_laporan.php', {
                     fid_user: u.id,
-                    tipe: 'NORMAL'
+                    tipe: 'F2'
                 })
                 .then(x => {
                     console.warn(x.data);
@@ -67,9 +73,7 @@ export default function ({ navigation, route }) {
     };
 
     const renderItem = ({ item, index }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('AddLaporanList', {
-            kode: item.kode
-        })} style={{
+        <TouchableOpacity onPress={() => navigation.navigate('AddLaporanList', item)} style={{
             margin: 10,
             padding: 10,
             backgroundColor: colors.white,
@@ -85,8 +89,7 @@ export default function ({ navigation, route }) {
                     fontFamily: fonts.secondary[600],
                     fontSize: 12,
                     color: colors.primary,
-                }}>{item.tanggal}</Text>
-
+                }}>{item.hari}, {item.tanggal} {item.jam.substring(0, 5)}</Text>
                 <View style={{
                     flexDirection: 'row',
                     marginVertical: 3,
@@ -95,7 +98,7 @@ export default function ({ navigation, route }) {
                         fontFamily: fonts.secondary[600],
                         fontSize: 12,
                         flex: 0.4,
-                    }}>Work Area</Text>
+                    }}>Kendaraan</Text>
                     <Text style={{
                         fontFamily: fonts.secondary[600],
                         fontSize: 12,
@@ -105,7 +108,47 @@ export default function ({ navigation, route }) {
                         fontFamily: fonts.secondary[400],
                         fontSize: 12,
                         flex: 1,
-                    }}>{item.area}</Text>
+                    }}>{item.kendaraan} / FOAM TENDER</Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 3,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                        flex: 0.4,
+                    }}>Pembuat</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                        flex: 0.1,
+                    }}>:</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[400],
+                        fontSize: 12,
+                        flex: 1,
+                    }}>{item.username} / {item.nama_lengkap}</Text>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    marginVertical: 3,
+                }}>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                        flex: 0.4,
+                    }}>Status Laporan</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                        flex: 0.1,
+                    }}>:</Text>
+                    <Text style={{
+                        fontFamily: fonts.secondary[600],
+                        fontSize: 12,
+                        flex: 1,
+                    }}>{item.status}</Text>
                 </View>
             </View>
 
@@ -115,7 +158,7 @@ export default function ({ navigation, route }) {
             }}>
                 <Icon type='ionicon' name='chevron-forward-outline' color={colors.primary} />
             </View>
-        </TouchableOpacity>
+        </TouchableOpacity >
     );
 
     return (
@@ -141,14 +184,9 @@ export default function ({ navigation, route }) {
                     fontSize: windowWidth / 20,
                     color: colors.white,
                     marginBottom: 5,
-                }}>DAFTAR LAPORAN
+                }}>Arsip Ceklis Harian F2
                 </Text>
-                <Text style={{
-                    fontFamily: fonts.secondary[400],
-                    fontSize: windowWidth / 25,
-                    color: colors.white,
-                    marginBottom: 10,
-                }}>Activity GE - ACI -MMJ Rock Layering</Text>
+
             </View>
 
             <FlatList
