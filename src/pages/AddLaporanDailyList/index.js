@@ -26,7 +26,7 @@ import { WebView } from 'react-native-webview';
 export default function ({ navigation, route }) {
     const isFocused = useIsFocused();
     const kode = route.params.kode;
-    const item = route.params;
+    const [item, setItem] = useState(route.params);
 
     const [catatan, setCatatan] = useState(route.params.catatan);
     const [loading, setLoading] = useState(false);
@@ -35,6 +35,12 @@ export default function ({ navigation, route }) {
     useEffect(() => {
         getData('user').then(u => {
             setUser(u);
+        });
+        axios.post(urlAPI + 'v1_get_laporan.php', {
+            kode: route.params.kode,
+        }).then(res => {
+            setItem(res.data);
+            console.log('get laporan', res.data);
         })
     }, [])
 
@@ -137,7 +143,7 @@ export default function ({ navigation, route }) {
 
             {download && <View style={{ flex: 1, }}><ActivityIndicator color={colors.primary} size="large" /></View>}
 
-            {!download &&
+            {!download && item.status != 'PROSES' &&
                 <View style={{
                     flex: 1,
                     backgroundColor: 'red'
@@ -285,10 +291,7 @@ export default function ({ navigation, route }) {
                     <MyGap jarak={10} />
 
                     {!loading && item.status == 'PROSES' && <MyButton onPress={SaveCatatan} warna={colors.primary} title="Simpan Selesai" Icons="checkmark-circle-outline" />}
-
-
                 </ScrollView>
-
             }
 
             <View style={{

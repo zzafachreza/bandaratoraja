@@ -90,7 +90,7 @@ export default function ({ navigation }) {
 
                 if (res.data.status == 200) {
                     Alert.alert('ARFF TORAJA AIRPORT', res.data.messege);
-                    navigation.replace('AddLaporanListDaily', {
+                    navigation.replace('AddLaporanDailyList', {
                         kode: res.data.kode
                     })
                 } else {
