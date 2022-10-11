@@ -64,6 +64,7 @@ export default function ({ navigation, route }) {
             axios
                 .post(urlAPI + 'v1_data_laporan.php', {
                     fid_user: u.id,
+                    id_departement: u.id_departement,
                     tipe: 'F1',
                     awal: tanggal.awal,
                     akhir: tanggal.akhir

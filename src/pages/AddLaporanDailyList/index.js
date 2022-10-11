@@ -107,21 +107,30 @@ export default function ({ navigation, route }) {
     }
 
     const SaveDone = () => {
-        setLoading(true);
-        setTimeout(() => {
-            axios.post(urlAPI + 'v1_update_status.php', {
-                kode: route.params.kode,
-            }).then(res => {
-                setLoading(false);
-                if (res.data.status == 200) {
-                    Alert.alert('ARFF TORAJA AIRPORT', res.data.messege);
-                    navigation.goBack();
-                } else {
-                    console.warn(res.data.messege);
-                }
-                console.log(res.data);
-            })
-        }, 1200)
+        getData('user').then(u => {
+            console.log(u);
+
+            setLoading(true);
+            setTimeout(() => {
+                axios.post(urlAPI + 'v1_update_status.php', {
+                    kode: route.params.kode,
+                    nama_lengkap: u.nama_lengkap,
+                    nip: u.nik
+                }).then(res => {
+                    setLoading(false);
+                    if (res.data.status == 200) {
+                        Alert.alert('ARFF TORAJA AIRPORT', res.data.messege);
+                        navigation.goBack();
+                    } else {
+                        console.warn(res.data.messege);
+                    }
+                    console.log(res.data);
+                })
+            }, 1200)
+
+
+        });
+
     }
 
 

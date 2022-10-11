@@ -325,42 +325,42 @@ export default function ({ navigation, route }) {
 
                 {kirim.form == 2 && (
                     <View>
-                        <MyInput label="1. Tekanan Tabung (1)" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.tekanan_tabung1} onChangeText={
+                        <MyInput label="1. Tekanan Tabung (1)" icon={false} placeholder="jumlah" value={kirim.tekanan_tabung1} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 tekanan_tabung1: x
                             })
                         } />
                         <MyGap jarak={10} />
-                        <MyInput label="2. Tekanan Tabung (2)" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.tekanan_tabung2} onChangeText={
+                        <MyInput label="2. Tekanan Tabung (2)" icon={false} placeholder="jumlah" value={kirim.tekanan_tabung2} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 tekanan_tabung2: x
                             })
                         } />
                         <MyGap jarak={10} />
-                        <MyInput label="3. Tekanan Tabung (P)" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.tekanan_tabungp} onChangeText={
+                        <MyInput label="3. Tekanan Tabung (P)" icon={false} placeholder="jumlah" value={kirim.tekanan_tabungp} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 tekanan_tabungp: x
                             })
                         } />
                         <MyGap jarak={10} />
-                        <MyInput label="4. Suhu Oli Gearbox" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.suhuoligearbox} onChangeText={
+                        <MyInput label="4. Suhu Oli Gearbox" icon={false} placeholder="jumlah" value={kirim.suhuoligearbox} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 suhuoligearbox: x
                             })
                         } />
                         <MyGap jarak={10} />
-                        <MyInput label="5. Tegangan Baterai" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.teganganbaterai} onChangeText={
+                        <MyInput label="5. Tegangan Baterai" icon={false} placeholder="jumlah" value={kirim.teganganbaterai} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 teganganbaterai: x
                             })
                         } />
                         <MyGap jarak={10} />
-                        <MyInput label="6. Konsumsi Bahan Bakar" icon={false} placeholder="jumlah" keyboardType="number-pad" value={kirim.konsumsibahanbakar} onChangeText={
+                        <MyInput label="6. Konsumsi Bahan Bakar" icon={false} placeholder="jumlah" value={kirim.konsumsibahanbakar} onChangeText={
                             x => setKirim({
                                 ...kirim,
                                 konsumsibahanbakar: x

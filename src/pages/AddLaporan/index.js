@@ -175,6 +175,13 @@ export default function ({ navigation }) {
                             {
                                 value: 'Jumat',
                                 label: 'Jumat'
+                            },
+                            {
+                                value: 'Sabtu',
+                                label: 'Sabtu'
+                            }, {
+                                value: 'Minggu',
+                                label: 'Minggu'
                             }
                         ]} />
                     </View>
