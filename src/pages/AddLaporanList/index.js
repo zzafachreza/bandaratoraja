@@ -12,7 +12,9 @@ import {
     TextInput,
     ActivityIndicator,
     FlatList,
-    Alert
+    Alert,
+    Linking,
+    PermissionsAndroid
 } from 'react-native';
 import { colors } from '../../utils/colors';
 import { fonts, windowWidth } from '../../utils/fonts';
@@ -22,7 +24,8 @@ import axios from 'axios';
 import { MyButton, MyGap, MyInput } from '../../components';
 import { useIsFocused } from '@react-navigation/native';
 import { WebView } from 'react-native-webview';
-
+import RNFetchBlob from 'rn-fetch-blob';
+import FileViewer from "react-native-file-viewer";
 export default function ({ navigation, route }) {
     const isFocused = useIsFocused();
     const kode = route.params.kode;
@@ -64,7 +67,7 @@ export default function ({ navigation, route }) {
     }
 
     const SaveDownload = () => {
-        const urlDownload = 'https://bandaratoraja.zavalabs.com/pdf/f2_view.php?kode=' + item.kode + '&fid_user=' + user.id
+        const urlDownload = 'https://bandaratoraja.zavalabs.com/pdf/f2.php?kode=' + item.kode + '&fid_user=' + user.id
         console.log(urlDownload);
 
         Alert.alert(
@@ -77,24 +80,22 @@ export default function ({ navigation, route }) {
                 },
                 {
                     text: "OK", onPress: () => {
-                        setDownload(true);
-
-
-
-                        Alert.alert(
-                            "ARFF TORAJA AIRPORT",
-                            "Download Berhasil",
-                            [
-
-                                {
-                                    text: "OK", onPress: () => {
-                                        setDownload(false);
-
-                                    }
-                                }
-                            ],
-
-                        );
+                        PermissionsAndroid.request(
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                            {
+                                title: 'storage title',
+                                message: 'storage_permission',
+                            },
+                        ).then(granted => {
+                            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                                //Once user grant the permission start downloading
+                                console.log('Storage Permission Granted.');
+                                downloadHistory(urlDownload);
+                            } else {
+                                //If permission denied then show alert 'Storage Permission 
+                                Alert.alert('storage_permission');
+                            }
+                        });
 
                     }
                 }
@@ -104,6 +105,40 @@ export default function ({ navigation, route }) {
 
 
 
+    }
+
+    const downloadHistory = async (url) => {
+        setLoading(true);
+        const { config, fs } = RNFetchBlob;
+        let PictureDir = fs.dirs.DownloadDir;
+        let date = new Date();
+        let options = {
+            fileCache: true,
+            addAndroidDownloads: {
+                //Related to the Android only
+                useDownloadManager: true,
+                notification: true,
+                path:
+                    PictureDir +
+                    '/' + item.kode + '.pdf',
+                description: 'Risk Report Download',
+            },
+        };
+        config(options)
+            .fetch('GET', url)
+            .then((res) => {
+                setLoading(false);
+                //Showing alert after successful downloading
+                FileViewer.open(res.data, { showOpenWithDialog: true }).then(() => {
+                    // success
+                })
+                    .catch((error) => {
+                        // error
+                        console.warn(error)
+                    });
+                console.log('res -> ', JSON.stringify(res));
+                Alert.alert("ARFF TORAJA AIRPORT", 'Downloaded Successfully.');
+            });
     }
 
     const SaveDone = () => {
@@ -146,10 +181,10 @@ export default function ({ navigation, route }) {
             flex: 1,
             backgroundColor: colors.white
         }}>
-
+            {/* 
             {download && <WebView source={{
                 uri: 'https://bandaratoraja.zavalabs.com/pdf/f2.php?kode=' + route.params.kode + '&fid_user=' + user.id
-            }} />}
+            }} />} */}
 
             {download && <View style={{ flex: 1, }}><ActivityIndicator color={colors.primary} size="large" /></View>}
 

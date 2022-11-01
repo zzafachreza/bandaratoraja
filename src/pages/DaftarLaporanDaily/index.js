@@ -11,6 +11,7 @@ import {
     TouchableOpacity,
     Alert,
     ActivityIndicator,
+    PermissionsAndroid,
 } from 'react-native';
 import { storeData, getData, urlAPI } from '../../utils/localStorage';
 import axios from 'axios';
@@ -24,6 +25,8 @@ import { useIsFocused } from '@react-navigation/native';
 import DatePicker from 'react-native-datepicker'
 import moment from 'moment';
 import WebView from 'react-native-webview';
+import RNFetchBlob from 'rn-fetch-blob';
+import FileViewer from "react-native-file-viewer";
 
 const wait = timeout => {
     return new Promise(resolve => {
@@ -188,32 +191,64 @@ export default function ({ navigation, route }) {
                 },
                 {
                     text: "OK", onPress: () => {
-                        setLoading(true);
-                        setDownload(true);
-
-
-
-                        Alert.alert(
-                            "ARFF TORAJA AIRPORT",
-                            "Download Berhasil",
-                            [
-
-                                {
-                                    text: "OK", onPress: () => {
-                                        setDownload(false);
-                                        setLoading(false);
-                                    }
-                                }
-                            ],
-
-                        );
-
+                        const urlDownload = 'https://bandaratoraja.zavalabs.com/pdf/f1_all.php?awal=' + tanggal.awal + '&akhir=' + tanggal.akhir + '&fid_user=' + user.id;
+                        PermissionsAndroid.request(
+                            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                            {
+                                title: 'storage title',
+                                message: 'storage_permission',
+                            },
+                        ).then(granted => {
+                            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                                //Once user grant the permission start downloading
+                                console.log('Storage Permission Granted.');
+                                downloadHistory(urlDownload);
+                            } else {
+                                //If permission denied then show alert 'Storage Permission 
+                                Alert.alert('storage_permission');
+                            }
+                        });
                     }
                 }
             ],
 
         );
 
+    }
+
+
+    const downloadHistory = async (url) => {
+        setLoading(true);
+        const { config, fs } = RNFetchBlob;
+        let PictureDir = fs.dirs.DownloadDir;
+        let date = new Date();
+        let options = {
+            fileCache: true,
+            addAndroidDownloads: {
+                //Related to the Android only
+                useDownloadManager: true,
+                notification: true,
+                path:
+                    PictureDir +
+                    '/f1_all.pdf',
+                description: 'Risk Report Download',
+            },
+        };
+        config(options)
+            .fetch('GET', url)
+            .then((res) => {
+                setLoading(false);
+                FileViewer.open(res.data, { showOpenWithDialog: true }).then(() => {
+                    // success
+                })
+                    .catch((error) => {
+                        // error
+                        console.warn(error)
+                    });
+                //Showing alert after successful downloading
+                console.log('res -> ', JSON.stringify(res));
+                Alert.alert("ARFF TORAJA AIRPORT", 'Downloaded Successfully.');
+            });
     }
 
     return (
