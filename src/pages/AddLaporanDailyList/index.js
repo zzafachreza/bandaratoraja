@@ -128,11 +128,6 @@ export default function ({ navigation, route }) {
         config(options)
             .fetch('GET', url)
             .then((res) => {
-
-                const myres = JSON.stringify(res);
-
-                console.log(res.data)
-                alert(res.data);
                 FileViewer.open(res.data, { showOpenWithDialog: true }).then(() => {
                     // success
                 })
